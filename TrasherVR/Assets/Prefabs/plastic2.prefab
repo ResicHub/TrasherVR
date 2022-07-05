@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3358643628634192681}
   - component: {fileID: 4409443936517598285}
   - component: {fileID: 1767739430414716967}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: plastic2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
