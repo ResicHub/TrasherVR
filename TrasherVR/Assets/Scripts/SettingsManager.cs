@@ -8,11 +8,6 @@ public class SettingsManager : MonoBehaviour
     private float volume;
     private bool soundOn;
 
-    [SerializeField]
-    private VolumeBarScript volumeBar;
-    [SerializeField]
-    private SoundButtonScript soundButton;
-
     private void Awake()
     {
         if (Instance == null)
@@ -26,14 +21,6 @@ public class SettingsManager : MonoBehaviour
         SaveLoadManager.SettingsData data = SaveLoadManager.Instance.LoadSettings();
         volume = data.volume;
         soundOn = data.soundOn;
-        if (volumeBar != null)
-        {
-            volumeBar.ResetVolumeButtons((int) volume);
-        }
-        if (soundButton != null)
-        {
-            soundButton.ResetText(soundOn);
-        }
     }
 
     public void SetVolume(float value)

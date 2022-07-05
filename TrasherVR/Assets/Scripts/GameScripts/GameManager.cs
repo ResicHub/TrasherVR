@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private CameraController camera;
     [SerializeField]
-    private BackGroundController bg;
-    [SerializeField]
     private TextMeshProUGUI gameOverText;
     [SerializeField]
     private GameObject menuButton;
@@ -74,7 +72,6 @@ public class GameManager : MonoBehaviour
         oldMissedCount = 0;
 
         StartCoroutine(LoadGameCoroutine());
-        GameOn();
         StartCoroutine(GameStartCoroutine());
     }
 
@@ -132,23 +129,6 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(EndGameCoroutine());
             }
         }
-    }
-
-    public void GameOn()
-    {
-        bg.SceneOn();
-        StartCoroutine(SetBG(false));
-    }
-    public void GameOff()
-    {
-        bg.gameObject.SetActive(true);
-        bg.SceneOff();
-    }
-
-    private IEnumerator SetBG(bool value)
-    {
-        yield return new WaitForSeconds(1);
-        bg.gameObject.SetActive(value);
     }
 
     private void ResetTimerText()
@@ -232,20 +212,17 @@ public class GameManager : MonoBehaviour
             if (level < 5)
             {
                 StartCoroutine(NextLevelCoroutine());
-                GameOff();
                 StartCoroutine(GoToNextLevel());
             }
             
             else
             {
-                GameOff();
                 SaveLoadManager.Instance.RemoveGame();
                 StartCoroutine(GameOverTextCoroutine("You Win!"));
             }
         }
         else
         {
-            GameOff();
             SaveLoadManager.Instance.RemoveGame();
             StartCoroutine(GameOverTextCoroutine("Game Over"));
         }
@@ -342,7 +319,6 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator QuitGameCoroutine()
     {
-        GameOff();
         yield return new WaitForSeconds(2);
         GoToMainMenu();
     }
