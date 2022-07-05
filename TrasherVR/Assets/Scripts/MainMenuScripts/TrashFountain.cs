@@ -12,7 +12,10 @@ public class TrashFountain : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        isActive = true;
+        if (other.tag == "Trash")
+        {
+            isActive = true;
+        }
     }
 
     private void FixedUpdate()
@@ -26,7 +29,6 @@ public class TrashFountain : MonoBehaviour
                 Quaternion.identity);
             Vector3 direction = new Vector3(Random.Range(-0.2f, 0.2f), 1.5f, Random.Range(-0.2f, 0.2f));
             obj.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
-
             
             if (timer <= 0)
             {
