@@ -97,15 +97,7 @@ public class TrashObject : MonoBehaviour
         {
             if (other.transform.tag == "Container")
             {
-                isDropped = false;
-                if (other.GetComponent<ContainerScript>().type == type)
-                {
-                    GameManager.Instance.IncreaseCaught();
-                }
-                else
-                {
-                    GameManager.Instance.IncreaseMissed();
-                }
+                GameManager.Instance.IncreaseMissed();
                 StartCoroutine(GoToContainerCoroutine(transform.position, other.transform.position));
                 StartCoroutine(SqueezeCoroutine());
                 StartCoroutine(DestroyCoroutine());
