@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 677, y: 492}
   m_MaxSize: {x: 14001, y: 14042}
   vertical: 0
-  controlID: 14
+  controlID: 133
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -431,9 +431,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: b2f8ffff4cfbffff64fbffff50450000f4450000
+      m_SelectedIDs: 42ebffff
+      m_LastClickedID: -5310
+      m_ExpandedIDs: b2f8ffff4cfbffff64fbffff50450000a2450000f4450000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -541,11 +541,11 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.16199455, y: 0.42694366, z: -0.077049725, w: 0.8866232}
+    m_Target: {x: 0.27291706, y: 0.2187804, z: -0.06300349, w: 0.93501735}
     speed: 2
-    m_Value: {x: 0.16327825, y: 0.4267079, z: -0.07766887, w: 0.8861309}
+    m_Value: {x: 0.2728386, y: 0.21871749, z: -0.06298537, w: 0.9347485}
   m_Size:
-    m_Target: 1.3855715
+    m_Target: 1.0855715
     speed: 2
     m_Value: 1.0855715
   m_Ortho:
@@ -611,19 +611,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/MainMenuScripts
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 71
   m_LastFolders:
-  - Assets/Scripts/MainMenuScripts
+  - Assets/Scripts
   m_LastFoldersGridSize: 71
   m_LastProjectPath: D:\MyProjects\ResicHub Ivanov Ruslan\TrasherVR\TrasherVR
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 80}
-    m_SelectedIDs: 864e0000
-    m_LastClickedID: 20102
+    m_SelectedIDs: 4e4e0000
+    m_LastClickedID: 20046
     m_ExpandedIDs: 00000000464e0000484e00004a4e00004c4e00004e4e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0

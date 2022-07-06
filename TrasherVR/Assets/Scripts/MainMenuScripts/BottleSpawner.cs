@@ -30,14 +30,32 @@ public class BottleSpawner : MonoBehaviour
         timer -= Time.deltaTime;
         if (!isTrashOnTable)
         {
-            Instantiate(
+            GameObject bottle = Instantiate(
                 prefab,
-                gameObject.transform.position,
+                new Vector3(0,100,0),
                 gameObject.transform.rotation);
+            StartCoroutine(SpawnCoroutine(bottle, transform.position));
         }
         if (timer <= 0)
         {
             timer = 1f;
         }
+    }
+
+    private IEnumerator SpawnCoroutine(GameObject obj, Vector3 finalPosition)
+    {
+        Vector3 finalScale = obj.transform.localScale;
+        obj.transform.localScale = Vector3.zero;
+        obj.GetComponent<Rigidbody>().isKinematic = true;
+
+        obj.transform.position = finalPosition;
+        float spawnTimer = 0f;
+        float spawningTime = 0.25f;
+        while (spawnTimer < spawningTime || obj.transform.localScale != finalScale)
+        {
+            yield return obj.transform.localScale = Vector3.Lerp(Vector3.zero, finalScale, spawnTimer / spawningTime);
+            spawnTimer += Time.deltaTime;
+        }
+        yield return obj.GetComponent<Rigidbody>().isKinematic = false;
     }
 }
