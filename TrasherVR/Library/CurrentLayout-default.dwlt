@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 3}
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -138,10 +138,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 677, y: 492}
-  m_MaxSize: {x: 14001, y: 14042}
+  m_MinSize: {x: 679, y: 492}
+  m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 133
+  controlID: 107
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -163,7 +163,7 @@ MonoBehaviour:
     y: 0
     width: 1477
     height: 947
-  m_MinSize: {x: 402, y: 492}
+  m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
   controlID: 15
@@ -188,8 +188,8 @@ MonoBehaviour:
     y: 0
     width: 1477
     height: 614
-  m_MinSize: {x: 402, y: 221}
-  m_MaxSize: {x: 8002, y: 4021}
+  m_MinSize: {x: 403, y: 221}
+  m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
   controlID: 16
 --- !u!114 &9
@@ -211,8 +211,8 @@ MonoBehaviour:
     y: 0
     width: 390
     height: 614
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -431,9 +431,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 42ebffff
-      m_LastClickedID: -5310
-      m_ExpandedIDs: b2f8ffff4cfbffff64fbffff50450000a2450000f4450000
+      m_SelectedIDs: 5efbffff
+      m_LastClickedID: -1186
+      m_ExpandedIDs: b2f8ffff4cfbffff64fbffffc24400004c4500009e450000f0450000544600008e460000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -493,9 +493,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.067, y: 1.2530003, z: -0.22300011}
+    m_Target: {x: 0.12081504, y: 1.8123014, z: 0.9414942}
     speed: 2
-    m_Value: {x: -0.067, y: 1.2530003, z: -0.22300011}
+    m_Value: {x: 0.12081504, y: 1.8123014, z: 0.9414942}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -541,13 +541,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.27291706, y: 0.2187804, z: -0.06300349, w: 0.93501735}
+    m_Target: {x: 0.11389375, y: 0.17513904, z: -0.019714983, w: 0.97805184}
     speed: 2
-    m_Value: {x: 0.2728386, y: 0.21871749, z: -0.06298537, w: 0.9347485}
+    m_Value: {x: 0.1123625, y: 0.1765809, z: -0.01961448, w: 0.97765493}
   m_Size:
-    m_Target: 1.0855715
+    m_Target: 1.414243
     speed: 2
-    m_Value: 1.0855715
+    m_Value: 1.7142429
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -611,20 +611,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Scripts/MainMenuScripts
   m_ViewMode: 1
   m_StartGridSize: 71
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Scripts/MainMenuScripts
   m_LastFoldersGridSize: 71
   m_LastProjectPath: D:\MyProjects\ResicHub Ivanov Ruslan\TrasherVR\TrasherVR
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 80}
-    m_SelectedIDs: 4e4e0000
-    m_LastClickedID: 20046
-    m_ExpandedIDs: 00000000464e0000484e00004a4e00004c4e00004e4e000000ca9a3b
+    m_SelectedIDs: 804e0000
+    m_LastClickedID: 20096
+    m_ExpandedIDs: 00000000424e0000444e0000464e0000484e00004a4e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -652,7 +652,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000464e0000484e00004a4e00004c4e00004e4e0000
+    m_ExpandedIDs: 00000000424e0000444e0000464e0000484e00004a4e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
