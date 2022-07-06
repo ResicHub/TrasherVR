@@ -7,7 +7,6 @@ public class BottleSpawner : MonoBehaviour
     [SerializeField]
     private GameObject prefab;
     private bool isTrashOnTable = true;
-    private float timer = 1f;
 
     private void OnTriggerStay(Collider other)
     {
@@ -27,7 +26,6 @@ public class BottleSpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        timer -= Time.deltaTime;
         if (!isTrashOnTable)
         {
             GameObject bottle = Instantiate(
@@ -36,17 +34,12 @@ public class BottleSpawner : MonoBehaviour
                 gameObject.transform.rotation);
             StartCoroutine(SpawnCoroutine(bottle, transform.position));
         }
-        if (timer <= 0)
-        {
-            timer = 1f;
-        }
     }
 
     private IEnumerator SpawnCoroutine(GameObject obj, Vector3 finalPosition)
     {
         Vector3 finalScale = obj.transform.localScale;
         obj.transform.localScale = Vector3.zero;
-        obj.GetComponent<Rigidbody>().isKinematic = true;
 
         obj.transform.position = finalPosition;
         float spawnTimer = 0f;
@@ -56,6 +49,5 @@ public class BottleSpawner : MonoBehaviour
             yield return obj.transform.localScale = Vector3.Lerp(Vector3.zero, finalScale, spawnTimer / spawningTime);
             spawnTimer += Time.deltaTime;
         }
-        yield return obj.GetComponent<Rigidbody>().isKinematic = false;
     }
 }
