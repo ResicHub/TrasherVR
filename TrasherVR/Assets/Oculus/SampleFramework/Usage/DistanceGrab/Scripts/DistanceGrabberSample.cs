@@ -58,9 +58,17 @@ namespace OculusSampleFramework
             DebugUIBuilder.instance.AddToggle("Grab Through Walls", ToggleGrabThroughWalls, allowGrabThroughWalls);
             DebugUIBuilder.instance.Show();
 
-			// Forcing physics tick rate to match game frame rate, for improved physics in this sample.
-			// See comment in OVRGrabber.Update for more information.
-			float freq = OVRManager.display.displayFrequency;
+            // Forcing physics tick rate to match game frame rate, for improved physics in this sample.
+            // See comment in OVRGrabber.Update for more information.
+            float freq = 30f;
+            try
+            {
+                freq = OVRManager.display.displayFrequency;
+            }
+            catch
+            {
+
+            }
 			if(freq > 0.1f)
 			{
 				Debug.Log("Setting Time.fixedDeltaTime to: " + (1.0f / freq));
