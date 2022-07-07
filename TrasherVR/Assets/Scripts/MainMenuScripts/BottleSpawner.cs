@@ -16,6 +16,14 @@ public class BottleSpawner : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!isTrashOnTable && other.tag == "Trash")
+        {
+            isTrashOnTable = true;
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Trash")
@@ -28,6 +36,8 @@ public class BottleSpawner : MonoBehaviour
     {
         if (!isTrashOnTable)
         {
+            Debug.Log("Trash not on table");
+            isTrashOnTable = true;
             GameObject bottle = Instantiate(
                 prefab,
                 new Vector3(0,100,0),
@@ -38,6 +48,7 @@ public class BottleSpawner : MonoBehaviour
 
     private IEnumerator SpawnCoroutine(GameObject obj, Vector3 finalPosition)
     {
+        yield return new WaitForSecondsRealtime(0.5f);
         Vector3 finalScale = obj.transform.localScale;
         obj.transform.localScale = Vector3.zero;
 

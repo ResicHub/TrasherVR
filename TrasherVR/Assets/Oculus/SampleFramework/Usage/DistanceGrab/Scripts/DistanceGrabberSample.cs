@@ -60,15 +60,7 @@ namespace OculusSampleFramework
 
             // Forcing physics tick rate to match game frame rate, for improved physics in this sample.
             // See comment in OVRGrabber.Update for more information.
-            float freq = 30f;
-            try
-            {
-                freq = OVRManager.display.displayFrequency;
-            }
-            catch
-            {
-
-            }
+            float freq = OVRManager.display.displayFrequency;
 			if(freq > 0.1f)
 			{
 				Debug.Log("Setting Time.fixedDeltaTime to: " + (1.0f / freq));
