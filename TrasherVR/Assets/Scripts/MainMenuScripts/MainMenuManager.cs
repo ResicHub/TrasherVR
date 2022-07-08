@@ -1,9 +1,13 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
     public static MainMenuManager Instance;
+
+    [SerializeField]
+    private BackGroundController bg;
 
     private void Awake()
     {
@@ -13,18 +17,38 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    public void Test()
+    private void Start()
     {
-        GameObject sphere = Instantiate(
-            GameObject.CreatePrimitive(PrimitiveType.Sphere), 
-            new Vector3(0, 1, 0), 
-            Quaternion.identity, 
-            gameObject.transform);
-        sphere.AddComponent<Rigidbody>();
+        MenuOn();
+    }
+
+    public void MenuOn()
+    {
+        bg.SceneOn();
+        StartCoroutine(SetBG(false));
+    }
+
+    public void MenuOff()
+    {
+        bg.gameObject.SetActive(true);
+        bg.SceneOff();
+    }
+
+    private IEnumerator SetBG(bool value)
+    {
+        yield return new WaitForSeconds(1);
+        bg.gameObject.SetActive(value);
     }
 
     public void StartGame()
     {
-        SceneManager.LoadScene("GameScene");
+        MenuOff();
+        StartCoroutine(GameStartCoroutine());
+    }
+
+    private IEnumerator GameStartCoroutine()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("Game");
     }
 }

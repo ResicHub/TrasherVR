@@ -7,7 +7,7 @@ public class NewGameBucket : MonoBehaviour
     {
         if (other.tag == "Trash")
         {
-            SceneManager.LoadScene("MainMenu");
+            MainMenuManager.Instance.StartGame();
         }
     }
 }

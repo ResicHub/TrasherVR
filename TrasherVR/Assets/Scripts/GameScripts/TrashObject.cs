@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class TrashObject : MonoBehaviour
 {
-    public int type;
+    public int Type;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Floor")
         {
-            //GameManager.Instance.IncreaseMissed();
+            GameManager.IncreaseMissed();
             Destroy(gameObject);
         }
     }

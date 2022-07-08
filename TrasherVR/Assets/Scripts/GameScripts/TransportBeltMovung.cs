@@ -7,7 +7,7 @@ public class TransportBeltMovung : MonoBehaviour
     private Rigidbody myRigidbody;
     private float speed = 1f;
     private Vector3 currentPosition;
-    private bool isMoving = true;
+    private bool isMoving = false;
 
     private void Start()
     {

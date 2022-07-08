@@ -6,7 +6,7 @@ public class TrashFountain : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> prefabs;
-    private float timer = 10f;
+    private float timer = 5f;
     private bool isActive = false;
     private bool isDone = false;
 
