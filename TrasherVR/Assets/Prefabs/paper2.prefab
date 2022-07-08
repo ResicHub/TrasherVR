@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8941892832253536147}
   - component: {fileID: 8151069330478378463}
   - component: {fileID: 4580978877751638136}
+  - component: {fileID: -445716445395387667}
   m_Layer: 8
   m_Name: paper2
   m_TagString: Trash
@@ -130,3 +131,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3581270933114727071, guid: 83ba91e90bf6e774293ff70bd1227e0b, type: 3}
+--- !u!114 &-445716445395387667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4459695564429869032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1274e79742e6770438cf573600a3390b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4

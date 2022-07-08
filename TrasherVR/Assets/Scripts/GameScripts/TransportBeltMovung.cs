@@ -5,9 +5,9 @@ using UnityEngine;
 public class TransportBeltMovung : MonoBehaviour
 {
     private Rigidbody myRigidbody;
-    private float speed = 2f;
+    private float speed = 1f;
     private Vector3 currentPosition;
-    private bool isMoving = false;
+    private bool isMoving = true;
 
     private void Start()
     {

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6722431123541924123}
   - component: {fileID: 5988308668886345619}
   - component: {fileID: -2546838147436206390}
+  - component: {fileID: -1669093494133971524}
   m_Layer: 8
   m_Name: plastic3
   m_TagString: Trash
@@ -130,3 +131,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2665667356230177599, guid: fb90bb3b8d948734a9fe2f2f3af70d14, type: 3}
+--- !u!114 &-1669093494133971524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7538955464966206049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1274e79742e6770438cf573600a3390b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2

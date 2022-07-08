@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7769864439623130322}
   - component: {fileID: 7235089214120657721}
   - component: {fileID: 6451917228982623570}
-  - component: {fileID: 7571314597543340262}
+  - component: {fileID: 8510145654160358748}
+  - component: {fileID: 7472205469275952433}
   m_Layer: 8
   m_Name: plastic1
   m_TagString: Trash
@@ -116,7 +117,7 @@ MonoBehaviour:
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
   m_materialColorField: _OutlineColor
---- !u!64 &7571314597543340262
+--- !u!64 &8510145654160358748
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,3 +131,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3377229516428243965, guid: a181c1bd6c05f3841948f77689e04939, type: 3}
+--- !u!114 &7472205469275952433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130377191444888839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1274e79742e6770438cf573600a3390b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2

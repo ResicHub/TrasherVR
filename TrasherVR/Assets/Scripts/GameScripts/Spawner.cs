@@ -34,7 +34,7 @@ public class Spawner : MonoBehaviour
     {
         Instantiate(
             prefabs[Random.Range(0, prefabs.Count)], 
-            transform.position + new Vector3(Random.value * 2 - 1, 0, 0), 
+            transform.position + new Vector3((Random.value * 2 - 1) / 2, 0, 0), 
             Quaternion.Euler(0, Random.Range(-180, 180), 0),
             transform);
     }

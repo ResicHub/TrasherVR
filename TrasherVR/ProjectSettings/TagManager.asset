@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Container
   - Trash
+  - Floor
   layers:
   - Default
   - TransparentFX

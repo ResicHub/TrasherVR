@@ -165,7 +165,6 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < spawner.transform.childCount; i++)
         {
             GameObject child = spawner.transform.GetChild(i).gameObject;
-            child.GetComponent<TrashObject>().canCatch = true;
         }
     }
 
@@ -175,8 +174,6 @@ public class GameManager : MonoBehaviour
         {
             GameObject child = spawner.transform.GetChild(i).gameObject;
             TrashObject childTO = child.GetComponent<TrashObject>();
-            childTO.canCatch = false;
-            childTO.MouseUp();
         }
     }
 

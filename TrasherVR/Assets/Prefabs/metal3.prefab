@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6299838907885708875}
   - component: {fileID: 8036213234686742430}
   - component: {fileID: 2247697586967593867}
+  - component: {fileID: 5334416681034320837}
   m_Layer: 8
   m_Name: metal3
   m_TagString: Trash
@@ -130,3 +131,16 @@ MonoBehaviour:
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
   m_materialColorField: _OutlineColor
+--- !u!114 &5334416681034320837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6088953443407948818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1274e79742e6770438cf573600a3390b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3
