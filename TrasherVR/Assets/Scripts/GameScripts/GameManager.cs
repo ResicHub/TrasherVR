@@ -10,8 +10,6 @@ public class GameManager : MonoBehaviour
     private Spawner spawner;
     [SerializeField]
     private TransportBeltMovung belt;
-    [SerializeField]
-    private BackGroundController bg;
 
     [SerializeField]
     private TextMeshPro levelText;
@@ -64,7 +62,6 @@ public class GameManager : MonoBehaviour
         oldCaughtCount = 0;
         oldMissedCount = 0;
 
-        GameOn();
         StartCoroutine(GameStartCoroutine());
     }
 
@@ -98,23 +95,6 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(EndGameCoroutine());
             }
         }
-    }
-
-    public void GameOn()
-    {
-        bg.SceneOn();
-        StartCoroutine(SetBG(false));
-    }
-    public void GameOff()
-    {
-        bg.gameObject.SetActive(true);
-        bg.SceneOff();
-    }
-
-    private IEnumerator SetBG(bool value)
-    {
-        yield return new WaitForSecondsRealtime(1);
-        bg.gameObject.SetActive(value);
     }
 
     private void ResetTimerText()
@@ -176,40 +156,12 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        if (isLevelCompleete)
-        {
-            StartCoroutine(GameOverTextCoroutine("You Win!"));
-        }
-        else
-        {
-            StartCoroutine(GameOverTextCoroutine("Game Over"));
-        }
+        StartCoroutine(GameOverCoroutine());
     }
 
-    public IEnumerator GameOverTextCoroutine(string text)
+    public IEnumerator GameOverCoroutine()
     {
-        gameOverText.text = text;
         yield return new WaitForSecondsRealtime(5);
-        GameOff();
-        yield return new WaitForSecondsRealtime(2);
-        float t = 0;
-        while (t <= 1)
-        {
-            Color color = gameOverText.color;
-            color.a = Mathf.Lerp(0f, 1f, t);
-            yield return gameOverText.color = color;
-            t += Time.deltaTime * 2;
-        }
-        yield return new WaitForSecondsRealtime(2);
-        t = 0;
-        while (t <= 1)
-        {
-            Color color = gameOverText.color;
-            color.a = Mathf.Lerp(1f, 0f, t);
-            yield return gameOverText.color = color;
-            t += Time.deltaTime * 2;
-        }
-        new WaitForSecondsRealtime(2);
         GoToMainMenu();
     }
 
