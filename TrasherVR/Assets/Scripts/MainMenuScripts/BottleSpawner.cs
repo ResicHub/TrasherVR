@@ -1,59 +1,41 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using OculusSampleFramework;
 
 public class BottleSpawner : MonoBehaviour
 {
     [SerializeField]
     private GameObject prefab;
-    private bool isTrashOnTable = true;
-    [SerializeField]
-    private Vector3 spawnPosition;
-    
-    private void OnTriggerStay(Collider other)
+    private GameObject bottle;
+    private bool isCanSpawn;
+
+    private void Start()
     {
-        if (!isTrashOnTable && other.tag == "Trash")
+        isCanSpawn = true;
+        Spawn();
+    }
+
+    private void Update()
+    {
+        if (isCanSpawn && bottle.GetComponent<DistanceGrabbable>().isGrabbed)
         {
-            isTrashOnTable = true;
+            isCanSpawn = false;
+            Spawn();
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void Spawn()
     {
-        if (!isTrashOnTable && other.tag == "Trash")
-        {
-            isTrashOnTable = true;
-        }
+        StartCoroutine(SpawnCoroutine());
     }
-    
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Trash")
-        {
-            isTrashOnTable = false;
-            StartCoroutine(SpawnCoroutine());
-        }
-    }
+
     private IEnumerator SpawnCoroutine()
     {
-        yield return new WaitForSecondsRealtime(0.5f);
-        if (!isTrashOnTable)
-        {
-            GameObject bottle = Instantiate(
+        yield return new WaitForSecondsRealtime(1f);
+        bottle = Instantiate(
                 prefab,
-                new Vector3(0, 100, 0),
-                gameObject.transform.rotation);
-            Vector3 finalScale = bottle.transform.localScale;
-
-            bottle.transform.localScale = Vector3.zero;
-            bottle.transform.position = spawnPosition;
-            float spawnTimer = 0f;
-            float spawningTime = 0.25f;
-            while (spawnTimer < spawningTime || bottle.transform.localScale != finalScale)
-            {
-                yield return bottle.transform.localScale = Vector3.Lerp(Vector3.zero, finalScale, spawnTimer / spawningTime);
-                spawnTimer += Time.deltaTime;
-            }
-        }
+                gameObject.transform.position,
+                Quaternion.Euler(-90, 0, 0));
+        isCanSpawn = true;
     }
 }
