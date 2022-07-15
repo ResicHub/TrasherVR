@@ -1,48 +1,54 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public static MainMenuManager Instance;
+    public static MainMenuManager instance;
 
     [SerializeField]
     private TextMeshPro prompt;
 
+    public bool isSettingsActive = false;
+
     private void Awake()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
         }
     }
 
     private void Start()
     {
-        prompt.text = "Press 'A' to open settings\n(lover button of right controller)";
+        SetSettings();
+        OVRScreenFade.instance.FadeIn();
     }
 
-    private void Update()
+    public void ResetSettingsActive()
     {
-        CheckInput();
+        isSettingsActive = !isSettingsActive;
+        SetSettings();
     }
 
-    private void CheckInput()
+    public void SetSettings()
     {
-        if (OVRInput.GetDown(OVRInput.Button.One))
+        if (isSettingsActive)
         {
-            StartSettings();
+            prompt.text =
+                "Use hand triggers (middle fingers) to grab the bottle.\n" +
+                "Use left stick to change distance to the table,\n" +
+                "and right stick to change height.\n" +
+                "Make sure you are comfortable grabbing the object on the table.";
         }
-    }
-
-    private void StartSettings()
-    {
-        prompt.text =
-            "Use secondary tumb sticks to grab the bottle.\n" +
-            "Use left stick to change distance to the table,\n" +
-            "and right stick to change height.\n" +
-            "Make sure you are comfortable grabbing the object on the table.";
+        else
+        {
+            prompt.text = 
+                "Press 'A' to open settings\n" +
+                "(lover button of right controller)";
+        }
     }
 
     public void StartGame()
@@ -52,7 +58,8 @@ public class MainMenuManager : MonoBehaviour
 
     private IEnumerator GameStartCoroutine()
     {
-        yield return new WaitForSeconds(1);
+        OVRScreenFade.instance.FadeOut();
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene("Game");
     }
 }
