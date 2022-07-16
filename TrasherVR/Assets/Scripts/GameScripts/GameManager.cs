@@ -10,8 +10,6 @@ public class GameManager : MonoBehaviour
     private Spawner spawner;
     [SerializeField]
     private TransportBeltMovung belt;
-    [SerializeField]
-    private BackGroundController bg;
 
     [SerializeField]
     private TextMeshPro levelText;
@@ -32,8 +30,6 @@ public class GameManager : MonoBehaviour
     private TextMeshPro gameResultText;
     [SerializeField]
     private TextMeshProUGUI gameOverText;
-
-    public static GameManager Instance;
     
     private bool gameOn;
     private int level;
@@ -45,6 +41,8 @@ public class GameManager : MonoBehaviour
     private int oldMissedCount;
 
     private bool isLevelCompleete = true;
+
+    public static GameManager Instance;
 
     private void Awake()
     {
@@ -64,15 +62,14 @@ public class GameManager : MonoBehaviour
         oldCaughtCount = 0;
         oldMissedCount = 0;
 
-        GameOn();
         StartCoroutine(GameStartCoroutine());
     }
 
     private IEnumerator GameStartCoroutine()
     {
         levelText.text = $"level {level}";
-        yield return new WaitForSecondsRealtime(2);
-        Debug.Log($"level {level}");
+        OVRScreenFade.instance.FadeIn();
+        yield return new WaitForSecondsRealtime(4);
 
         spawner.SetRespawn(spawnerSpeed);
         belt.SetSpeed(beltSpeed);
@@ -93,28 +90,10 @@ public class GameManager : MonoBehaviour
                 gameOn = false;
                 spawner.isSpawning = false;
                 belt.SetMovement(false);
-                Debug.Log("Time!");
                 timerText.text = "Time!";
                 StartCoroutine(EndGameCoroutine());
             }
         }
-    }
-
-    public void GameOn()
-    {
-        bg.SceneOn();
-        StartCoroutine(SetBG(false));
-    }
-    public void GameOff()
-    {
-        bg.gameObject.SetActive(true);
-        bg.SceneOff();
-    }
-
-    private IEnumerator SetBG(bool value)
-    {
-        yield return new WaitForSecondsRealtime(1);
-        bg.gameObject.SetActive(value);
     }
 
     private void ResetTimerText()
@@ -150,16 +129,11 @@ public class GameManager : MonoBehaviour
     {
         float sessionCountAll = caughtCount + missedCount;
         float sessionAccuracy = caughtCount / sessionCountAll * 100;
-        Debug.Log($"{caughtCount} ###############################################");
-        Debug.Log($"{sessionCountAll} ###############################################");
-        Debug.Log($"{sessionAccuracy} ###############################################");
         float robotCountAll = sessionCountAll + oldCaughtCount + oldMissedCount;
         float robotAccuracy = (caughtCount + oldCaughtCount) / robotCountAll * 100;
-        Debug.Log($"{robotAccuracy} ###############################################");
         string statisticString = $"Session accuracy: {System.Math.Round(sessionAccuracy, 2)}%{System.Environment.NewLine}" +
                                  $"Robot accuracy: {System.Math.Round(robotAccuracy, 2)}%";
         isLevelCompleete = sessionAccuracy >= 95f;
-        yield return new WaitForSecondsRealtime(1);
         statisticText.text = statisticString;
         if (isLevelCompleete)
         {
@@ -171,57 +145,40 @@ public class GameManager : MonoBehaviour
             gameResultText.text = "Level failed!";
             gameResultText.color = Color.red;
         }
-        GameOver();
+        yield return new WaitForSecondsRealtime(1);
+        timerText.fontSize = 8;
+        if (level == 1)
+        {
+            timerText.text = 
+                "Press 'A' to start next level\n" +
+                "Press 'X' to quit game";
+        }
+        PlayerController.Instance.IsCheckingAnyButton = true;
     }
 
-    public void GameOver()
+    public void GetButton(bool goToNextLevel)
     {
-        if (isLevelCompleete)
+        if (goToNextLevel)
         {
-            StartCoroutine(GameOverTextCoroutine("You Win!"));
+            StartCoroutine(GoToNextLevelCoroutine());
         }
         else
         {
-            StartCoroutine(GameOverTextCoroutine("Game Over"));
+            StartCoroutine(GoToMainMenuCoroutine());
         }
     }
 
-    public IEnumerator GameOverTextCoroutine(string text)
+    private IEnumerator GoToNextLevelCoroutine()
     {
-        gameOverText.text = text;
-        yield return new WaitForSecondsRealtime(5);
-        GameOff();
+        OVRScreenFade.instance.FadeOut();
         yield return new WaitForSecondsRealtime(2);
-        float t = 0;
-        while (t <= 1)
-        {
-            Color color = gameOverText.color;
-            color.a = Mathf.Lerp(0f, 1f, t);
-            yield return gameOverText.color = color;
-            t += Time.deltaTime * 2;
-        }
-        yield return new WaitForSecondsRealtime(2);
-        t = 0;
-        while (t <= 1)
-        {
-            Color color = gameOverText.color;
-            color.a = Mathf.Lerp(1f, 0f, t);
-            yield return gameOverText.color = color;
-            t += Time.deltaTime * 2;
-        }
-        new WaitForSecondsRealtime(2);
-        GoToMainMenu();
+        SceneManager.LoadScene("Game");
     }
 
-    public void GoToMainMenu()
+    private IEnumerator GoToMainMenuCoroutine()
     {
+        OVRScreenFade.instance.FadeOut();
+        yield return new WaitForSecondsRealtime(2);
         SceneManager.LoadScene("MainMenu");
-    }
-
-    public void SetPause(bool mode)
-    {
-        gameOn = !mode;
-        spawner.isSpawning = !mode;
-        belt.SetMovement(!mode);
     }
 }

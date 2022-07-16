@@ -7,7 +7,7 @@ public class NewGameBucket : MonoBehaviour
     {
         if (other.tag == "Trash")
         {
-            MainMenuManager.Instance.StartGame();
+            MainMenuManager.instance.StartGame();
         }
     }
 }
