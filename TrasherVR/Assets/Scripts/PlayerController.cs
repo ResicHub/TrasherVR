@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    private bool isGameScene = false;
+    public bool IsCheckingAnyButton = false;
+
     [SerializeField]
     private Transform floor;
     [SerializeField]
@@ -15,12 +19,34 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private List<float> positionBorders;
 
-    private void Update()
+    public static PlayerController Instance;
+
+    private void Awake()
     {
-        CheckInput();
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
+        if (SceneManager.GetActiveScene().name == "Game")
+        {
+            isGameScene = true;
+        }
     }
 
-    private void CheckInput()
+    private void Update()
+    {
+        if (isGameScene && IsCheckingAnyButton)
+        {
+            CheckGameInput();
+        }
+        else
+        {
+            CheckMainMenuInput();
+        }
+    }
+
+    private void CheckMainMenuInput()
     {
         if (OVRInput.GetDown(OVRInput.Button.One))
         {
@@ -33,25 +59,44 @@ public class PlayerController : MonoBehaviour
             {
                 if (floor.position.z < heightBorders[1])
                 {
-                    floor.position = floor.position + Vector3.forward * heightChangeSpeed * Time.fixedDeltaTime;
+                    floor.position += heightChangeSpeed * Time.fixedDeltaTime * Vector3.forward;
                 }
             }
             else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickDown))
             {
                 if (floor.position.z > heightBorders[0])
                 {
-                    floor.position = floor.position - Vector3.forward * heightChangeSpeed * Time.fixedDeltaTime;
+                    floor.position -= heightChangeSpeed * Time.fixedDeltaTime * Vector3.forward;
                 }
             }
             // Distance to table
             if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickUp))
             {
-                // Position++
+                if (transform.position.z < positionBorders[1])
+                {
+                    transform.position += positionChangeSpeed * Time.fixedDeltaTime * Vector3.forward;
+                }
             }
             else if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickDown))
             {
-                // Position--
+                if (transform.position.z > positionBorders[0])
+                {
+                    transform.position -= positionChangeSpeed * Time.fixedDeltaTime * Vector3.forward;
+                }
             }
         }
+    }
+
+    private void CheckGameInput()
+    {
+        if (OVRInput.GetDown(OVRInput.Button.One))
+        {
+            GameManager.Instance.GetButton(true);
+        }
+        else if (OVRInput.GetDown(OVRInput.Button.Three))
+        {
+            GameManager.Instance.GetButton(false);
+        }
+        IsCheckingAnyButton = false;
     }
 }

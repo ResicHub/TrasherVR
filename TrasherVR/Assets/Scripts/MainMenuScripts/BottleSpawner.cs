@@ -11,13 +11,14 @@ public class BottleSpawner : MonoBehaviour
 
     private void Start()
     {
+        bottle = null;
         isCanSpawn = true;
         Spawn();
     }
 
     private void Update()
     {
-        if (isCanSpawn && bottle.GetComponent<DistanceGrabbable>().isGrabbed)
+        if (bottle != null && isCanSpawn && bottle.GetComponent<DistanceGrabbable>().isGrabbed)
         {
             isCanSpawn = false;
             Spawn();
