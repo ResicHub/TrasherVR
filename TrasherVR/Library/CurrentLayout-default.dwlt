@@ -72,7 +72,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &4
 MonoBehaviour:
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 677, y: 492}
   m_MaxSize: {x: 14001, y: 14042}
   vertical: 0
-  controlID: 113
+  controlID: 111
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 402, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 37
+  controlID: 112
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_MinSize: {x: 402, y: 221}
   m_MaxSize: {x: 8002, y: 4021}
   vertical: 0
-  controlID: 38
+  controlID: 113
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -237,8 +237,8 @@ MonoBehaviour:
     y: 0
     width: 1044
     height: 614
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 12}
@@ -433,7 +433,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 3a88ffff5a88fffff48fffff6e90ffffcc96ffffec96ffff869effff009fffffe2a8ffff02a9ffff9cb0ffff16b1ffff7abfffff9abfffff38c7ffffb6c7ffff3acbffff2cd1ffff42d1ffffa4dbffffd8e3ffff02f2ffff20f2ffffa4f7ffffa8f7ffff5afbffff984a0000304b0000827300001275000008780000a078000056af0000e6b000004ec30000bcc30000d0c400002ed600009cd60000b0d70000
+      m_ExpandedIDs: debefffffabeffff26bfffff3ec2ffff6ec5ffff36cbffff52cbffff30ceffffaaceffffd0d4ffffecd4ffffcad7ffff44d8fffff2e0ffff0ee1ffffece3ffff66e4ffffbee9ffffdee9ffff78f1fffff2f1ffff42fbffff60fbffff8c4a00009c4a0000244b0000de990000fe9a0000b0ac000020ad0000d0ad000020ae000070c10000a8c1000018c20000b0c20000c8c2000018c30000a2c60000dec60000ecc7000086c80000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -493,9 +493,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.13914834, y: 0.09902668, z: 0.32911545}
+    m_Target: {x: 0, y: 0, z: -0.50000024}
     speed: 2
-    m_Value: {x: -0.13914834, y: 0.09902668, z: 0.32911545}
+    m_Value: {x: 0, y: 0, z: -0.50000024}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -541,13 +541,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.044138074, y: -0.6511924, z: 0.038360324, w: -0.7569034}
+    m_Target: {x: -0.098016575, y: -0.6600506, z: 0.08787805, w: -0.73985803}
     speed: 2
-    m_Value: {x: -0.04412982, y: -0.65107065, z: 0.03835315, w: -0.75676185}
+    m_Value: {x: -0.097733624, y: -0.6621393, z: 0.08815467, w: -0.73773205}
   m_Size:
-    m_Target: 2.8972607
+    m_Target: 3.0438223
     speed: 2
-    m_Value: 2.8972607
+    m_Value: 3.0438223
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -611,20 +611,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/TextMesh Pro/Resources/Fonts & Materials
+    - Assets/Scenes
   m_ViewMode: 1
   m_StartGridSize: 71
   m_LastFolders:
-  - Assets/TextMesh Pro/Resources/Fonts & Materials
+  - Assets/Scenes
   m_LastFoldersGridSize: 71
   m_LastProjectPath: D:\MyProjects\ResicHub Ivanov Ruslan\TrasherVR\TrasherVR
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 44}
-    m_SelectedIDs: 8c720000
-    m_LastClickedID: 29324
-    m_ExpandedIDs: 000000008452000086520000885200008a5200008c5200008e520000905200009252000094520000c0520000c25200008a72000000ca9a3b
+    m_SelectedIDs: 98520000
+    m_LastClickedID: 21144
+    m_ExpandedIDs: 000000007a5200007c5200007e52000080520000825200008452000086520000885200008a5200009c520000a852000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -652,7 +652,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000008452000086520000885200008a5200008c5200008e520000905200009252000094520000
+    m_ExpandedIDs: 000000007a5200007c5200007e52000080520000825200008452000086520000885200008a520000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

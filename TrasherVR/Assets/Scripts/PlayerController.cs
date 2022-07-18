@@ -40,11 +40,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (isGameScene && IsCheckingAnyButton)
+        if (IsCheckingAnyButton)
         {
             CheckGameInput();
         }
-        else
+        else if (!isGameScene)
         {
             CheckMainMenuInput();
         }
@@ -101,11 +101,12 @@ public class PlayerController : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.Button.One))
         {
             GameManager.Instance.GetButton(true);
+            IsCheckingAnyButton = false;
         }
         else if (OVRInput.GetDown(OVRInput.Button.Three))
         {
             GameManager.Instance.GetButton(false);
+            IsCheckingAnyButton = false;
         }
-        IsCheckingAnyButton = false;
     }
 }
