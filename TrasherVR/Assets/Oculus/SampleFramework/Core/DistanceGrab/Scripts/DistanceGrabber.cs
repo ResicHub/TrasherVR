@@ -32,7 +32,7 @@ namespace OculusSampleFramework
         // Distance below which no-snap objects won't be teleported, but will instead be left
         // where they are in relation to the hand.
         [SerializeField]
-        float m_noSnapThreshhold = 0.05f;
+        float m_noSnapThreshhold = 0.0f;
 
         [SerializeField]
         bool m_useSpherecast;

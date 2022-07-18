@@ -38,4 +38,19 @@ public class Spawner : MonoBehaviour
             Quaternion.Euler(0, Random.Range(-180, 180), 0),
             transform);
     }
+
+    public void SetSpawnDifficulty(int mode)
+    {
+        switch (mode)
+        {
+            case 1:
+                prefabs.RemoveRange(6, 6);
+                break;
+            case 2:
+                prefabs.RemoveRange(9, 3);
+                break;
+            default:
+                break;
+        }
+    }
 }

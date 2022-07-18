@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class NewGameBucket : MonoBehaviour
 {
@@ -7,6 +6,10 @@ public class NewGameBucket : MonoBehaviour
     {
         if (other.tag == "Trash")
         {
+            SaveLoadManager.Level = 1;
+            SaveLoadManager.CaughtCount = 0;
+            SaveLoadManager.MissedCount = 0;
+            PlayerController.Instance.SavePlayerSettings();
             MainMenuManager.instance.StartGame();
         }
     }

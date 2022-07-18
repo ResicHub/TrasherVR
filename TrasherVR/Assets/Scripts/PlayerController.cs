@@ -8,14 +8,10 @@ public class PlayerController : MonoBehaviour
     private bool isGameScene = false;
     public bool IsCheckingAnyButton = false;
 
-    [SerializeField]
-    private Transform floor;
-    [SerializeField]
-    private float heightChangeSpeed = 1.0f;
+    private float heightChangeSpeed = 0.5f;
     [SerializeField]
     private List<float> heightBorders;
-    [SerializeField]
-    private float positionChangeSpeed = 1.0f;
+    private float positionChangeSpeed = 0.5f;
     [SerializeField]
     private List<float> positionBorders;
 
@@ -34,13 +30,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        transform.position = SaveLoadManager.PlayerPosition;
+    }
+
     private void Update()
     {
-        if (isGameScene && IsCheckingAnyButton)
+        if (IsCheckingAnyButton)
         {
             CheckGameInput();
         }
-        else
+        else if (!isGameScene)
         {
             CheckMainMenuInput();
         }
@@ -55,29 +56,29 @@ public class PlayerController : MonoBehaviour
         if (MainMenuManager.instance.isSettingsActive)
         {
             // Height
-            if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickUp))
+            if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickUp))
             {
-                if (floor.position.z < heightBorders[1])
+                if (transform.position.y < heightBorders[1])
                 {
-                    floor.position += heightChangeSpeed * Time.fixedDeltaTime * Vector3.forward;
+                    transform.position += heightChangeSpeed * Time.fixedDeltaTime * Vector3.up;
                 }
             }
-            else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickDown))
+            else if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickDown))
             {
-                if (floor.position.z > heightBorders[0])
+                if (transform.position.y > heightBorders[0])
                 {
-                    floor.position -= heightChangeSpeed * Time.fixedDeltaTime * Vector3.forward;
+                    transform.position -= heightChangeSpeed * Time.fixedDeltaTime * Vector3.up;
                 }
             }
             // Distance to table
-            if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickUp))
+            if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickUp))
             {
                 if (transform.position.z < positionBorders[1])
                 {
                     transform.position += positionChangeSpeed * Time.fixedDeltaTime * Vector3.forward;
                 }
             }
-            else if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickDown))
+            else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickDown))
             {
                 if (transform.position.z > positionBorders[0])
                 {
@@ -87,16 +88,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void SavePlayerSettings()
+    {
+        SaveLoadManager.PlayerPosition = transform.position;
+    }
+
     private void CheckGameInput()
     {
         if (OVRInput.GetDown(OVRInput.Button.One))
         {
             GameManager.Instance.GetButton(true);
+            IsCheckingAnyButton = false;
         }
         else if (OVRInput.GetDown(OVRInput.Button.Three))
         {
             GameManager.Instance.GetButton(false);
+            IsCheckingAnyButton = false;
         }
-        IsCheckingAnyButton = false;
     }
 }

@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     private Spawner spawner;
     [SerializeField]
     private TransportBeltMovung belt;
+    [SerializeField]
+    private List<GameObject> containers;
 
     [SerializeField]
     private TextMeshPro levelText;
@@ -17,19 +19,12 @@ public class GameManager : MonoBehaviour
     private TextMeshPro timerText;
     private string timerTextCopy;
 
-    [SerializeField]
-    private float beltSpeed;
-    [SerializeField]
-    private float spawnerSpeed;
-    [SerializeField]
-    private float levelTimer;
+    private float levelTimer = 30f;
 
     [SerializeField]
     private TextMeshPro statisticText;
     [SerializeField]
     private TextMeshPro gameResultText;
-    [SerializeField]
-    private TextMeshProUGUI gameOverText;
     
     private bool gameOn;
     private int level;
@@ -56,27 +51,66 @@ public class GameManager : MonoBehaviour
     {
         gameOn = false;
         spawner.isSpawning = false;
-        level = 1;
+        level = SaveLoadManager.Level;
+        oldCaughtCount = SaveLoadManager.CaughtCount;
+        oldMissedCount = SaveLoadManager.MissedCount;
         caughtCount = 0;
         missedCount = 0;
-        oldCaughtCount = 0;
-        oldMissedCount = 0;
 
         StartCoroutine(GameStartCoroutine());
     }
 
     private IEnumerator GameStartCoroutine()
     {
-        levelText.text = $"level {level}";
+        levelText.text = $"Level: {level}";
+
+        ContainerSetup();
+
         OVRScreenFade.instance.FadeIn();
         yield return new WaitForSecondsRealtime(4);
-
-        spawner.SetRespawn(spawnerSpeed);
-        belt.SetSpeed(beltSpeed);
 
         gameOn = true;
         spawner.isSpawning = true;
         belt.SetMovement(true);
+    }
+
+    private void ContainerSetup()
+    {
+        switch (level)
+        {
+            case 1:
+                containers[2].SetActive(false);
+                containers[3].SetActive(false);
+                spawner.SetSpawnDifficulty(1);
+                spawner.SetRespawn(2);
+                belt.SetSpeed(1);
+                break;
+            case 2:
+                containers[2].SetActive(false);
+                containers[3].SetActive(false);
+                spawner.SetSpawnDifficulty(1);
+                spawner.SetRespawn(1.5f);
+                belt.SetSpeed(1);
+                break;
+            case 3:
+                containers[3].SetActive(false);
+                spawner.SetSpawnDifficulty(2);
+                spawner.SetRespawn(1.5f);
+                belt.SetSpeed(1);
+                break;
+            case 4:
+                containers[3].SetActive(false);
+                spawner.SetSpawnDifficulty(2);
+                spawner.SetRespawn(1.25f);
+                belt.SetSpeed(1.25f);
+                break;
+            case 5:
+                spawner.SetRespawn(1.25f);
+                belt.SetSpeed(1.25f);
+                break;
+            default:
+                break;
+        }
     }
 
     private void FixedUpdate()
@@ -133,7 +167,7 @@ public class GameManager : MonoBehaviour
         float robotAccuracy = (caughtCount + oldCaughtCount) / robotCountAll * 100;
         string statisticString = $"Session accuracy: {System.Math.Round(sessionAccuracy, 2)}%{System.Environment.NewLine}" +
                                  $"Robot accuracy: {System.Math.Round(robotAccuracy, 2)}%";
-        isLevelCompleete = sessionAccuracy >= 95f;
+        isLevelCompleete = sessionAccuracy >= 90f;
         statisticText.text = statisticString;
         if (isLevelCompleete)
         {
@@ -145,13 +179,17 @@ public class GameManager : MonoBehaviour
             gameResultText.text = "Level failed!";
             gameResultText.color = Color.red;
         }
-        yield return new WaitForSecondsRealtime(1);
-        timerText.fontSize = 8;
-        if (level == 1)
+        yield return new WaitForSecondsRealtime(2);
+        timerText.fontSize = 6;
+        if (isLevelCompleete && level != 5)
         {
             timerText.text = 
                 "Press 'A' to start next level\n" +
                 "Press 'X' to quit game";
+        }
+        else
+        {
+            timerText.text = "Press 'A' or 'X' to quit game";
         }
         PlayerController.Instance.IsCheckingAnyButton = true;
     }
@@ -160,7 +198,18 @@ public class GameManager : MonoBehaviour
     {
         if (goToNextLevel)
         {
-            StartCoroutine(GoToNextLevelCoroutine());
+            if (level != 5 && isLevelCompleete)
+            {
+                SaveLoadManager.Level = ++level;
+                SaveLoadManager.CaughtCount = caughtCount + oldCaughtCount;
+                SaveLoadManager.MissedCount = missedCount + oldMissedCount;
+
+                StartCoroutine(GoToNextLevelCoroutine());
+            }
+            else
+            {
+                StartCoroutine(GoToMainMenuCoroutine());
+            }
         }
         else
         {
