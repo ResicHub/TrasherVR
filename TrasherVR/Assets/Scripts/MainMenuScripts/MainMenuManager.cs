@@ -39,8 +39,8 @@ public class MainMenuManager : MonoBehaviour
         {
             prompt.text =
                 "Use hand triggers (middle fingers) to grab the bottle.\n" +
-                "Use left stick to change distance to the table,\n" +
-                "and right stick to change height.\n" +
+                "Use right stick to change distance to the table,\n" +
+                "and left stick to change height.\n" +
                 "Make sure you are comfortable grabbing the object on the table.";
         }
         else

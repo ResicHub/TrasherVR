@@ -2993,12 +2993,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40017498f679a0049adcc32f3bbbe668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsCheckingAnyButton: 0
   floor: {fileID: 1089498199}
-  heightChangeSpeed: 1
   heightBorders:
   - -3
   - 3
-  positionChangeSpeed: 1
   positionBorders:
   - -1.7
   - -1.4
@@ -3498,7 +3497,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089498198}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.5}
+  m_LocalPosition: {x: 0, y: -0, z: -0.5}
   m_LocalScale: {x: 30, y: 1, z: 30}
   m_Children: []
   m_Father: {fileID: 524587529}
@@ -3522,7 +3521,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8d8daae58c69eef4e8ac3d976703af6b, type: 2}
+  - {fileID: 2100000, guid: c06f24316d5a9416686642a56431ea32, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -34,14 +34,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        if (SaveLoadManager.FloorPosition != null)
-        {
-            floor.position = SaveLoadManager.FloorPosition;
-        }
-        if (SaveLoadManager.PlayerPosition != null)
-        {
-            transform.position = SaveLoadManager.PlayerPosition;
-        }
+        floor.position = SaveLoadManager.FloorPosition;
+        transform.position = SaveLoadManager.PlayerPosition;
     }
 
     private void Update()
@@ -70,29 +64,29 @@ public class PlayerController : MonoBehaviour
         if (MainMenuManager.instance.isSettingsActive)
         {
             // Height
-            if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickUp))
+            if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickUp))
             {
                 if (floor.position.z < heightBorders[1])
                 {
-                    floor.position += heightChangeSpeed * Time.fixedDeltaTime * Vector3.forward;
+                    floor.position += heightChangeSpeed * Time.fixedDeltaTime * Vector3.up;
                 }
             }
-            else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickDown))
+            else if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickDown))
             {
                 if (floor.position.z > heightBorders[0])
                 {
-                    floor.position -= heightChangeSpeed * Time.fixedDeltaTime * Vector3.forward;
+                    floor.position -= heightChangeSpeed * Time.fixedDeltaTime * Vector3.up;
                 }
             }
             // Distance to table
-            if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickUp))
+            if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickUp))
             {
                 if (transform.position.z < positionBorders[1])
                 {
                     transform.position += positionChangeSpeed * Time.fixedDeltaTime * Vector3.forward;
                 }
             }
-            else if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickDown))
+            else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickDown))
             {
                 if (transform.position.z > positionBorders[0])
                 {

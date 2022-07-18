@@ -392,11 +392,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsCheckingAnyButton: 0
   floor: {fileID: 526549141}
-  heightChangeSpeed: 1
   heightBorders:
   - -3
   - 3
-  positionChangeSpeed: 1
   positionBorders:
   - -1.7
   - -1.4
@@ -6363,12 +6361,8 @@ MonoBehaviour:
   - {fileID: 890464858}
   levelText: {fileID: 1328888849}
   timerText: {fileID: 1423951786}
-  beltSpeed: 1
-  spawnerSpeed: 2
-  levelTimer: 25
   statisticText: {fileID: 983378324}
   gameResultText: {fileID: 2069722855}
-  gameOverText: {fileID: 0}
 --- !u!4 &1751414893
 Transform:
   m_ObjectHideFlags: 0

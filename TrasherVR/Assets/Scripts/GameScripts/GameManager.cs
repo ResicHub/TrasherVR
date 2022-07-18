@@ -180,7 +180,7 @@ public class GameManager : MonoBehaviour
             gameResultText.color = Color.red;
         }
         yield return new WaitForSecondsRealtime(1);
-        timerText.fontSize = 8;
+        timerText.fontSize = 6;
         if (level != 5)
         {
             timerText.text = 
