@@ -1,111 +1,69 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
-public class SaveLoadManager : MonoBehaviour
+public static class SaveLoadManager
 {
-    public static SaveLoadManager Instance;
-    private GameData savedGame;
-
-    private void Awake()
+    private static int level;
+    public static int Level
     {
-        if (Instance == null)
+        get
         {
-            Instance = this;
+            return level;
+        }
+        set
+        {
+            level = value;
         }
     }
 
-    public bool CheckSavedGame()
+    private static Vector3 floorPosition;
+    public static Vector3 FloorPosition
     {
-        savedGame = LoadGame();
-        if (savedGame != null)
+        get
         {
-            return true;
+            return floorPosition;
         }
-        return false;
-    }
-
-    public void SaveSettings(SettingsData data)
-    {
-        BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/settings.stx";
-        FileStream stream = new FileStream(path, FileMode.Create);
-
-        formatter.Serialize(stream, data);
-        stream.Close();
-    }
-
-    public SettingsData LoadSettings()
-    {
-        string path = Application.persistentDataPath + "/settings.stx";
-        if (File.Exists(path))
+        set
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
-
-            SettingsData data = formatter.Deserialize(stream) as SettingsData;
-            return data;
-        }
-        else
-        {
-            return new SettingsData() 
-            { 
-                soundOn = true, 
-                volume = 10f 
-            };
+            floorPosition = value;
         }
     }
 
-    public void SaveGame(GameData data)
+    private static Vector3 playerPosition;
+    public static Vector3 PlayerPosition
     {
-        BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/save.sav";
-        FileStream stream = new FileStream(path, FileMode.Create);
-
-        formatter.Serialize(stream, data);
-        stream.Close();
-    }
-
-    public GameData LoadGame()
-    {
-        string path = Application.persistentDataPath + "/save.sav";
-        if (File.Exists(path))
+        get
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
-
-            GameData data = formatter.Deserialize(stream) as GameData;
-            return data;
+            return playerPosition;
         }
-        else
+        set
         {
-            return null;
+            playerPosition = value;
         }
     }
 
-    public void RemoveGame()
+    private static int caughtCount;
+    public static int CaughtCount
     {
-        string path = Application.persistentDataPath + "/save.sav";
-        if(File.Exists(path))
+        get
         {
-            File.Delete(path);
-        }    
+            return caughtCount;
+        }
+        set
+        {
+            caughtCount = value;
+        }
     }
 
-    [System.Serializable]
-    public class SettingsData
+    private static int missedCount;
+    public static int MissedCount
     {
-        public bool soundOn;
-        public float volume;
-    }
-
-    [System.Serializable]
-    public class GameData
-    {
-        public int level;
-        public int missed;
-        public int caught;
+        get
+        {
+            return missedCount;
+        }
+        set
+        {
+            missedCount = value;
+        }
     }
 }

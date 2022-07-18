@@ -10,12 +10,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private Transform floor;
-    [SerializeField]
-    private float heightChangeSpeed = 1.0f;
+    private float heightChangeSpeed = 0.5f;
     [SerializeField]
     private List<float> heightBorders;
-    [SerializeField]
-    private float positionChangeSpeed = 1.0f;
+    private float positionChangeSpeed = 0.5f;
     [SerializeField]
     private List<float> positionBorders;
 
@@ -31,6 +29,18 @@ public class PlayerController : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Game")
         {
             isGameScene = true;
+        }
+    }
+
+    private void Start()
+    {
+        if (SaveLoadManager.FloorPosition != null)
+        {
+            floor.position = SaveLoadManager.FloorPosition;
+        }
+        if (SaveLoadManager.PlayerPosition != null)
+        {
+            transform.position = SaveLoadManager.PlayerPosition;
         }
     }
 
@@ -51,6 +61,11 @@ public class PlayerController : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.Button.One))
         {
             MainMenuManager.instance.ResetSettingsActive();
+            if (!MainMenuManager.instance.isSettingsActive)
+            {
+                SaveLoadManager.FloorPosition = floor.transform.position;
+                SaveLoadManager.PlayerPosition = transform.position;
+            }
         }
         if (MainMenuManager.instance.isSettingsActive)
         {

@@ -51,11 +51,11 @@ public class GameManager : MonoBehaviour
     {
         gameOn = false;
         spawner.isSpawning = false;
-        level = 1;
+        level = SaveLoadManager.Level;
+        oldCaughtCount = SaveLoadManager.CaughtCount;
+        oldMissedCount = SaveLoadManager.MissedCount;
         caughtCount = 0;
         missedCount = 0;
-        oldCaughtCount = 0;
-        oldMissedCount = 0;
 
         StartCoroutine(GameStartCoroutine());
     }
@@ -181,11 +181,15 @@ public class GameManager : MonoBehaviour
         }
         yield return new WaitForSecondsRealtime(1);
         timerText.fontSize = 8;
-        if (level == 1)
+        if (level != 5)
         {
             timerText.text = 
                 "Press 'A' to start next level\n" +
                 "Press 'X' to quit game";
+        }
+        else
+        {
+            timerText.text = "Press 'A' or 'X' to quit game";
         }
         PlayerController.Instance.IsCheckingAnyButton = true;
     }
@@ -194,7 +198,14 @@ public class GameManager : MonoBehaviour
     {
         if (goToNextLevel)
         {
-            StartCoroutine(GoToNextLevelCoroutine());
+            if (level == 5)
+            {
+                StartCoroutine(GoToMainMenuCoroutine());
+            }
+            else
+            {
+                StartCoroutine(GoToNextLevelCoroutine());
+            }
         }
         else
         {
