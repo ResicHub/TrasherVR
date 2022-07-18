@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     private Spawner spawner;
     [SerializeField]
     private TransportBeltMovung belt;
+    [SerializeField]
+    private List<GameObject> containers;
 
     [SerializeField]
     private TextMeshPro levelText;
@@ -17,19 +19,12 @@ public class GameManager : MonoBehaviour
     private TextMeshPro timerText;
     private string timerTextCopy;
 
-    [SerializeField]
-    private float beltSpeed;
-    [SerializeField]
-    private float spawnerSpeed;
-    [SerializeField]
-    private float levelTimer;
+    private float levelTimer = 30f;
 
     [SerializeField]
     private TextMeshPro statisticText;
     [SerializeField]
     private TextMeshPro gameResultText;
-    [SerializeField]
-    private TextMeshProUGUI gameOverText;
     
     private bool gameOn;
     private int level;
@@ -67,16 +62,55 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GameStartCoroutine()
     {
-        levelText.text = $"level {level}";
+        levelText.text = $"Level: {level}";
+
+        ContainerSetup();
+
         OVRScreenFade.instance.FadeIn();
         yield return new WaitForSecondsRealtime(4);
-
-        spawner.SetRespawn(spawnerSpeed);
-        belt.SetSpeed(beltSpeed);
 
         gameOn = true;
         spawner.isSpawning = true;
         belt.SetMovement(true);
+    }
+
+    private void ContainerSetup()
+    {
+        switch (level)
+        {
+            case 1:
+                containers[2].SetActive(false);
+                containers[3].SetActive(false);
+                spawner.SetSpawnDifficulty(1);
+                spawner.SetRespawn(2);
+                belt.SetSpeed(1);
+                break;
+            case 2:
+                containers[2].SetActive(false);
+                containers[3].SetActive(false);
+                spawner.SetSpawnDifficulty(1);
+                spawner.SetRespawn(1.5f);
+                belt.SetSpeed(1);
+                break;
+            case 3:
+                containers[3].SetActive(false);
+                spawner.SetSpawnDifficulty(2);
+                spawner.SetRespawn(1.5f);
+                belt.SetSpeed(1);
+                break;
+            case 4:
+                containers[3].SetActive(false);
+                spawner.SetSpawnDifficulty(2);
+                spawner.SetRespawn(1.25f);
+                belt.SetSpeed(1.25f);
+                break;
+            case 5:
+                spawner.SetRespawn(1.25f);
+                belt.SetSpeed(1.25f);
+                break;
+            default:
+                break;
+        }
     }
 
     private void FixedUpdate()

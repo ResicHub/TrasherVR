@@ -390,6 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40017498f679a0049adcc32f3bbbe668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsCheckingAnyButton: 0
   floor: {fileID: 526549141}
   heightChangeSpeed: 1
   heightBorders:
@@ -6355,6 +6356,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawner: {fileID: 1080097728}
   belt: {fileID: 168813657}
+  containers:
+  - {fileID: 302336914}
+  - {fileID: 942637788}
+  - {fileID: 2137310711}
+  - {fileID: 890464858}
   levelText: {fileID: 1328888849}
   timerText: {fileID: 1423951786}
   beltSpeed: 1
