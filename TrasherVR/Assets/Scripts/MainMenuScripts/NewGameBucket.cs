@@ -9,6 +9,7 @@ public class NewGameBucket : MonoBehaviour
             SaveLoadManager.Level = 1;
             SaveLoadManager.CaughtCount = 0;
             SaveLoadManager.MissedCount = 0;
+            PlayerController.Instance.SavePlayerSettings();
             MainMenuManager.instance.StartGame();
         }
     }

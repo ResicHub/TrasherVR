@@ -8,8 +8,6 @@ public class PlayerController : MonoBehaviour
     private bool isGameScene = false;
     public bool IsCheckingAnyButton = false;
 
-    [SerializeField]
-    private Transform floor;
     private float heightChangeSpeed = 0.5f;
     [SerializeField]
     private List<float> heightBorders;
@@ -34,7 +32,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        floor.position = SaveLoadManager.FloorPosition;
         transform.position = SaveLoadManager.PlayerPosition;
     }
 
@@ -55,27 +52,22 @@ public class PlayerController : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.Button.One))
         {
             MainMenuManager.instance.ResetSettingsActive();
-            if (!MainMenuManager.instance.isSettingsActive)
-            {
-                SaveLoadManager.FloorPosition = floor.transform.position;
-                SaveLoadManager.PlayerPosition = transform.position;
-            }
         }
         if (MainMenuManager.instance.isSettingsActive)
         {
             // Height
             if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickUp))
             {
-                if (floor.position.z < heightBorders[1])
+                if (transform.position.y < heightBorders[1])
                 {
-                    floor.position += heightChangeSpeed * Time.fixedDeltaTime * Vector3.up;
+                    transform.position += heightChangeSpeed * Time.fixedDeltaTime * Vector3.up;
                 }
             }
             else if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickDown))
             {
-                if (floor.position.z > heightBorders[0])
+                if (transform.position.y > heightBorders[0])
                 {
-                    floor.position -= heightChangeSpeed * Time.fixedDeltaTime * Vector3.up;
+                    transform.position -= heightChangeSpeed * Time.fixedDeltaTime * Vector3.up;
                 }
             }
             // Distance to table
@@ -94,6 +86,11 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void SavePlayerSettings()
+    {
+        SaveLoadManager.PlayerPosition = transform.position;
     }
 
     private void CheckGameInput()

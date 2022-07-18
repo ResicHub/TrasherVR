@@ -8,7 +8,7 @@ public class CreditsBucket : MonoBehaviour
     private GameObject creditsBoard;
     private bool isActive = false;
     private float showingTime = 2f;
-    private Vector3 finalPosition = new Vector3(-2.9f, 1.2f, 0f);
+    private Vector3 finalPosition = new Vector3(-2.9f, 1.5f, -1.3f);
 
     private void OnTriggerEnter(Collider other)
     {

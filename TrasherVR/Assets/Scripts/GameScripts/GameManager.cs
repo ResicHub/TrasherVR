@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
         float robotAccuracy = (caughtCount + oldCaughtCount) / robotCountAll * 100;
         string statisticString = $"Session accuracy: {System.Math.Round(sessionAccuracy, 2)}%{System.Environment.NewLine}" +
                                  $"Robot accuracy: {System.Math.Round(robotAccuracy, 2)}%";
-        isLevelCompleete = sessionAccuracy >= 95f;
+        isLevelCompleete = sessionAccuracy >= 90f;
         statisticText.text = statisticString;
         if (isLevelCompleete)
         {
@@ -179,9 +179,9 @@ public class GameManager : MonoBehaviour
             gameResultText.text = "Level failed!";
             gameResultText.color = Color.red;
         }
-        yield return new WaitForSecondsRealtime(1);
+        yield return new WaitForSecondsRealtime(2);
         timerText.fontSize = 6;
-        if (level != 5)
+        if (isLevelCompleete && level != 5)
         {
             timerText.text = 
                 "Press 'A' to start next level\n" +
@@ -198,13 +198,17 @@ public class GameManager : MonoBehaviour
     {
         if (goToNextLevel)
         {
-            if (level == 5)
+            if (level != 5 && isLevelCompleete)
             {
-                StartCoroutine(GoToMainMenuCoroutine());
+                SaveLoadManager.Level = ++level;
+                SaveLoadManager.CaughtCount = caughtCount + oldCaughtCount;
+                SaveLoadManager.MissedCount = missedCount + oldMissedCount;
+
+                StartCoroutine(GoToNextLevelCoroutine());
             }
             else
             {
-                StartCoroutine(GoToNextLevelCoroutine());
+                StartCoroutine(GoToMainMenuCoroutine());
             }
         }
         else
